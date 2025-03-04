@@ -16,7 +16,7 @@ module.exports = {
   devtool,
   devServer: {
     port: 8080,
-    open: false,
+    open: true,
   },
   entry: pages.reduce((config, page) => {
     // eslint-disable-next-line no-param-reassign
