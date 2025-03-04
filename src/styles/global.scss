@@ -1,0 +1,185 @@
+@import "_variables.scss";
+// Font stack
+$font-stack-primary: "Lato", Arial, sans-serif;
+$font-stack-secondary: "Roboto Flex", Arial, sans-serif;
+
+// Reset and base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-stack-primary;
+  line-height: 1.6;
+  color: $primary-color-90;
+  background-color: $primary-color-90;
+}
+
+// Basic typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5em;
+  font-weight: 500;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+// Links
+a {
+  color: $neutral-color-0;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// design styles
+//buttons
+.btn {
+  // Base styles
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: none;
+  font-family: $font-stack-primary;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  // Variants
+  &-primary {
+    // Base variant styles
+    font-family: $font-stack-primary;
+    font-size: 18px !important;
+    line-height: 22px;
+    padding: 16px 32px;
+    background-color: $primary-color-100;
+    color: $neutral-color-0;
+    border: solid 2px $primary-color-100;
+    border-radius: 9999px;
+
+    // States
+    &:hover {
+      background-color: $primary-color-90;
+      color: $primary-color-100;
+    }
+
+    &:focus {
+      border-color: $neutral-color-0;
+    }
+
+    &:disabled {
+      background-color: $neutral-color-40;
+      cursor: not-allowed;
+      border-color: $neutral-color-40;
+    }
+  }
+
+  &-secondary {
+    // Base variant styles
+    font-family: $font-stack-primary;
+    font-size: 18px !important;
+    line-height: 22px;
+    padding: 16px 32px;
+    background-color: $primary-color-90;
+    color: $neutral-color-0;
+    border: solid 2px $neutral-color-0;
+    border-radius: 9999px;
+
+    // States
+    &:hover {
+      background-color: $neutral-color-0;
+      color: $neutral-color-100;
+    }
+
+    &:active {
+      background-color: $neutral-color-0;
+    }
+
+    &:disabled {
+      color: $neutral-color-60;
+      border-color: $neutral-color-60;
+    }
+  }
+}
+
+// card item
+.card-item {
+  // Base styles
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-stack-primary;
+  color: $neutral-color-0;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icons/arrow.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: transform 0.3s ease;
+  }
+
+  // States
+  &:hover {
+    text-decoration: none;
+
+    &::after {
+      transform: rotate(45deg);
+    }
+  }
+
+  &:focus {
+    text-decoration: none;
+    border: solid 1px $neutral-color-0;
+
+    &::after {
+      transform: rotate(45deg);
+    }
+  }
+
+  &:disabled {
+    text-decoration: none;
+    color: neutral-color-40;
+    pointer-events: none;
+    cursor: not-allowed;
+
+    &::after {
+      transform: rotate(45deg);
+    }
+  }
+}
+
+// menu item
+.menu-item {
+  color: $neutral-color-0;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
