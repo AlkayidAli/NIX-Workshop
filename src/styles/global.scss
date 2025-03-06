@@ -178,6 +178,8 @@ a {
 .menu-item {
   color: $neutral-color-0;
   text-decoration: none;
+  font-size: 18px !important;
+  line-height: 22px;
 
   &:hover {
     text-decoration: underline;
