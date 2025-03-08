@@ -20,6 +20,8 @@
   background-color: $primary-color-90;
   border-radius: 1.2rem;
   gap: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 
   .card-head {
     display: flex;
