@@ -1,5 +1,6 @@
 import "../styles/global.scss";
-import "../components/common/header/header.scss"; // Add this line
+import "../components/common/header/header.scss";
+import "../components/common/footer/footer.scss";
 import "./index.scss";
 import { loadComponent } from "../utils/loadComponents";
 import headerHtml from "../components/common/header/header.html";
