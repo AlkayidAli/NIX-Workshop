@@ -14,8 +14,8 @@
   <body>
     <div id="header"></div>
 
-    <div class="main-container">
-      <div class="title">
+    <main class="main-container" data-testid="main">
+      <div class="title" data-testid="banner">
         <p>
           Welcome to <br />
           <span class="nix">NIX</span> <span class="hub">HUB</span>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="cards-container">
-        <div class="card">
+        <div class="card" data-testid="sticky-pad-card">
           <div class="card-head">
             <h2>STICKY PAD</h2>
             <img
@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-testid="calculator-card">
           <div class="card-head">
             <h2>CALCULATOR</h2>
             <img src="../images/icons/calculator.png" alt="calculator icon" />
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-testid="weather-card">
           <div class="card-head">
             <h2>WEATHER</h2>
             <img src="../images/icons/weather.png" alt="weather icon" />
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
     <div id="footer"></div>
   </body>
 </html>
