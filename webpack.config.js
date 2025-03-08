@@ -2,6 +2,8 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// Remove or comment out this line
+// const { getFileLoader } = require("./utils");
 
 const mode = process.env.NODE_ENV || "development";
 const devMode = process.env.NODE_ENV !== "production";
@@ -9,20 +11,24 @@ const target = devMode ? "web" : "browserlist";
 const devtool = devMode ? "source-map" : undefined;
 
 const pages = ["index", "notes", "weather", "calculator"];
-
 module.exports = {
   mode,
   target,
   devtool,
   devServer: {
     port: 8080,
-    open: false,
+    open: true,
+    historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    }
   },
-  entry: pages.reduce((config, page) => {
-    // eslint-disable-next-line no-param-reassign
-    config[page] = `./src/${page}/${page}.js`;
-    return config;
-  }, {}),
+  entry: {
+    index: "./src/index/index.js",
+    notes: "./src/notes/notes.js",
+    calculator: "./src/calculator/calculator.js",
+    weather: "./src/weather/weather.js",
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     clean: true,
@@ -50,8 +56,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html$/i,
-        loader: "html-loader",
+        test: /\.html$/,
+        use: ["html-loader"],
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -61,6 +67,13 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
+        }
+      }
     ],
   },
 };

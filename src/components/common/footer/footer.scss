@@ -1,0 +1,76 @@
+@import "../../../styles/variables.scss";
+
+footer {
+  background-color: $neutral-color-90;
+}
+span {
+  color: $neutral-color-0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  gap: 1rem;
+}
+
+.lower-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  align-self: flex-start;
+}
+
+.logo {
+  align-self: start;
+  padding-bottom: 0.5rem;
+}
+
+.footer-links {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: start;
+  gap: 1rem;
+  padding-left: 0.6rem;
+}
+
+.social {
+  align-self: start;
+  padding-left: 0.6rem;
+
+  .social-icons {
+    padding-top: 0.8rem;
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: $mobile) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  .lower-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+  }
+
+  .footer-links {
+    padding-left: 0;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    width: 100%; // Increased width for better spacing
+
+    a {
+      width: calc(50% - 1rem); // Exact half width minus gap
+      text-align: left;
+      box-sizing: border-box;
+    }
+  }
+}
