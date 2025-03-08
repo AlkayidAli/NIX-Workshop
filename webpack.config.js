@@ -2,6 +2,8 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// Remove or comment out this line
+// const { getFileLoader } = require("./utils");
 
 const mode = process.env.NODE_ENV || "development";
 const devMode = process.env.NODE_ENV !== "production";
@@ -65,6 +67,13 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
+        }
+      }
     ],
   },
 };

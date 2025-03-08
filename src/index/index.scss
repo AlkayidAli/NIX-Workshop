@@ -1,0 +1,98 @@
+@import "../styles/variables";
+
+.main-container {
+  padding: 2.5rem 1rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $primary-color-90;
+  border-radius: 1.2rem;
+  gap: 2rem;
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .card-foot {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
+  }
+}
+
+.title {
+  p {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  img {
+    display: none;
+  }
+
+  .nix {
+    color: $additional-color-1;
+  }
+
+  .hub {
+    color: $primary-color-100;
+  }
+}
+
+@media (min-width: $tablet) {
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .title {
+    padding: 4rem 0;
+    img {
+      display: block;
+      width: 30%;
+      height: auto;
+    }
+
+    p {
+      font-size: 4rem;
+    }
+  }
+
+  .cards-container {
+    flex-direction: row;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-left: 20%;
+    padding: 3rem 0;
+  }
+
+  .card {
+    min-width: 320px;
+  }
+}
+
+@media (min-width: $desktop) {
+  .cards-container {
+    padding-left: 0;
+  }
+}

@@ -4,11 +4,12 @@
   background-color: $neutral-color-90;
 }
 
-.container {
+.container-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
+  padding: 1rem 1.5rem;
 }
 
 .nav-content {
@@ -30,7 +31,7 @@
 .button-group {
   margin-left: auto; // This pushes buttons to the right
 }
-.container > * {
+.container-header > * {
   align-self: center;
 }
 
@@ -62,8 +63,9 @@
     padding: 0;
   }
 
-  .container {
+  .container-header {
     flex-direction: column;
+    padding: 0;
   }
 
   .top-bar {
