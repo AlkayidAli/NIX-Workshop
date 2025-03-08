@@ -82,12 +82,18 @@
     gap: 2rem;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding-left: 20%;
     padding: 3rem 0;
+    padding-left: 1rem;
+    margin-right: -1rem;
   }
 
   .card {
     min-width: 320px;
+
+    .card-body {
+      height: 14rem;
+      width: 100%;
+    }
   }
 }
 
