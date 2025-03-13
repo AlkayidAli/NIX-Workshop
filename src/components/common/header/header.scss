@@ -1,7 +1,16 @@
 @import "../../../styles/variables.scss"; // main styles
 .header {
-  position: sticky;
+  position: fixed; // Change from sticky to fixed
+  top: 0;
+  left: 0; // Add left position
+  z-index: 100;
   background-color: $neutral-color-90;
+  width: 100%;
+}
+
+// Add padding to body to prevent content from hiding under fixed header
+body {
+  padding-top: 72px;
 }
 
 .container-header {
@@ -60,6 +69,12 @@
 
 @media (max-width: $mobile) {
   .header {
+    position: fixed; // Change from sticky to fixed
+    top: 0;
+    left: 0; // Add left position
+    z-index: 100;
+    background-color: $neutral-color-90;
+    width: 100%;
     padding: 0;
   }
 

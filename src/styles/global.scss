@@ -69,7 +69,7 @@ a {
     // Base variant styles
     font-family: $font-stack-primary;
     font-size: 1rem !important;
-    line-height: 1.375rem;
+    line-height: 1rem;
     padding: 1rem 2rem;
     background-color: $primary-color-100;
     color: $neutral-color-0;
@@ -96,10 +96,10 @@ a {
   &-secondary {
     // Base variant styles
     font-family: $font-stack-primary;
-    font-size: 1rem !important;
-    line-height: 1.375rem;
+    font-size: 0.9rem !important;
+    line-height: 1rem;
     padding: 1rem 2rem;
-    background-color: $primary-color-90;
+    background-color: $neutral-color-100;
     color: $neutral-color-0;
     border: solid 2px $neutral-color-0;
     border-radius: 9999px;
