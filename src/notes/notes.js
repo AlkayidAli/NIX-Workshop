@@ -22,11 +22,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const addNoteBtn = document.getElementById("addNoteBtn");
   const noteForm = document.getElementById("noteForm");
   const noteList = document.querySelector(".note-list-container");
+  const allFilterBtn = document.getElementById("allFilterBtn");
+  const activeFilterBtn = document.getElementById("activeFilterBtn");
+  const completedFilterBtn = document.getElementById("completedFilterBtn");
 
   //note management object
   const notesManager = {
     notes: [],
     currentFilter: "all",
+    selectedColor: "#fdffa3",
+
+    // Update getNoteStyle to use selectedColor
+    getNoteStyle() {
+      const rotations = [-2, -1, 0, 1, 2];
+      return {
+        backgroundColor: this.selectedColor,
+        transform: `rotate(${
+          rotations[Math.floor(Math.random() * rotations.length)]
+        }deg)`,
+      };
+    },
+
+    // Add this new method
+    updateColorSelector() {
+      document.querySelectorAll(".color-circle").forEach((circle) => {
+        const color = circle.dataset.color;
+        circle.style.backgroundColor = color;
+        circle.classList.toggle("selected", color === this.selectedColor);
+      });
+    },
+
+    // Update editNote method
+    editNote(note) {
+      document.getElementById("form-title").value = note.title;
+      document.getElementById("form-description").value = note.description;
+      this.selectedColor = note.style.backgroundColor;
+      this.updateColorSelector();
+      modal.style.display = "flex";
+      noteForm.dataset.editId = note.id;
+    },
 
     getFilteredNotes() {
       switch (this.currentFilter) {
@@ -35,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         case "completed":
           return this.notes.filter((note) => note.isCompleted);
         default:
-          return this.notes;
+          return [...this.notes]; // Return a copy of the array
       }
     },
     renderNotes() {
@@ -82,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     // render notes
+    // Remove duplicate renderNotes and editNote methods
+    // Keep only these versions:
     renderNotes() {
       const filteredNotes = this.getFilteredNotes();
       noteList.innerHTML = filteredNotes
@@ -91,12 +127,32 @@ document.addEventListener("DOMContentLoaded", () => {
       this.updateFilterButtons();
     },
 
-    //note buttons
+    editNote(note) {
+      document.getElementById("form-title").value = note.title;
+      document.getElementById("form-description").value = note.description;
+      this.selectedColor = note.style.backgroundColor;
+      this.updateColorSelector();
+      modal.style.display = "flex";
+      noteForm.dataset.editId = note.id;
+    },
+
+    // Update setupNoteButtons to prevent memory leaks
     setupNoteButtons() {
       noteList.querySelectorAll(".note-container").forEach((noteEl) => {
         const id = parseInt(noteEl.dataset.id);
         const note = this.notes.find((n) => n.id === id);
+        if (!note) return;
 
+        const editBtn = noteEl.querySelector(".edit-btn");
+        const statusBtn = noteEl.querySelector(".status-btn");
+        const deleteBtn = noteEl.querySelector(".delete-btn");
+
+        // Remove old event listeners if they exist
+        editBtn.replaceWith(editBtn.cloneNode(true));
+        statusBtn.replaceWith(statusBtn.cloneNode(true));
+        deleteBtn.replaceWith(deleteBtn.cloneNode(true));
+
+        // Add new event listeners
         noteEl
           .querySelector(".edit-btn")
           .addEventListener("click", () => this.editNote(note));
@@ -137,18 +193,39 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     // Load from localStorage
-    // Update the updateFilterButtons method
     updateFilterButtons() {
       const allBtn = document.getElementById("allFilterBtn");
       const activeBtn = document.getElementById("activeFilterBtn");
       const completedBtn = document.getElementById("completedFilterBtn");
 
+      // Get counts for each filter
+      const allCount = this.notes.length;
+      const activeCount = this.notes.filter((note) => !note.isCompleted).length;
+      const completedCount = this.notes.filter(
+        (note) => note.isCompleted
+      ).length;
+
+      // Update button text with counts using spans
+      allBtn.innerHTML = `All notes <span style="color: inherit">(${allCount})</span>`;
+      activeBtn.innerHTML = `Active <span style="color: inherit">(${activeCount})</span>`;
+      completedBtn.innerHTML = `Completed <span style="color: inherit">(${completedCount})</span>`;
+
+      // Remove active class from all buttons first
       [allBtn, activeBtn, completedBtn].forEach((btn) => {
         btn.classList.remove("active");
-        if (btn.id === `${this.currentFilter}FilterBtn`) {
-          btn.classList.add("active");
-        }
       });
+
+      // Add active class to the current filter button
+      switch (this.currentFilter) {
+        case "active":
+          activeBtn.classList.add("active");
+          break;
+        case "completed":
+          completedBtn.classList.add("active");
+          break;
+        default:
+          allBtn.classList.add("active");
+      }
     },
 
     // Update loadNotes to set initial filter
@@ -179,31 +256,47 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Event Listeners
+  // Add this after your other event listeners
+  document.querySelectorAll(".color-circle").forEach((circle) => {
+    circle.addEventListener("click", () => {
+      notesManager.selectedColor = circle.dataset.color;
+      notesManager.updateColorSelector();
+    });
+  });
+
+  // Update the addNoteBtn click handler
   addNoteBtn.addEventListener("click", () => {
     noteForm.reset();
     delete noteForm.dataset.editId;
+    notesManager.selectedColor = "#fdffa3"; // Reset to default color
+    notesManager.updateColorSelector();
     modal.style.display = "flex";
   });
 
-  // Add note form submit handler
-  // Fix the form submit handler
+  // Update the form submit handler to include the selected color
   noteForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const title = document.getElementById("form-title").value;
-    const description = document.getElementById("form-description").value;
+    const title = document.getElementById("form-title").value.trim();
+    const description = document
+      .getElementById("form-description")
+      .value.trim();
+
+    if (!title || !description) {
+      alert("Please fill in both title and description");
+      return;
+    }
 
     if (noteForm.dataset.editId) {
-      // Edit existing note
       const noteId = parseInt(noteForm.dataset.editId);
       const note = notesManager.notes.find((n) => n.id === noteId);
       if (note) {
         note.title = title;
         note.description = description;
+        note.style.backgroundColor = notesManager.selectedColor;
         notesManager.saveNotes();
         notesManager.renderNotes();
       }
     } else {
-      // Add new note
       notesManager.addNote(title, description);
     }
 
@@ -221,33 +314,40 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("form-cancel-btn").addEventListener("click", (e) => {
     e.preventDefault();
     modal.style.display = "none";
+    noteForm.reset();
   });
 
   // Close modal when clicking outside
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.style.display = "none";
+      noteForm.reset();
     }
   });
 
   // Load saved notes on startup
-  notesManager.loadNotes();
+  try {
+    notesManager.loadNotes();
+  } catch (error) {
+    console.error("Error loading notes:", error);
+    localStorage.removeItem("notes");
+    notesManager.notes = [];
+    notesManager.renderNotes();
+  }
 
   // Add filter button event listeners
-  document.getElementById("allFilterBtn").addEventListener("click", () => {
+  allFilterBtn.addEventListener("click", () => {
     notesManager.currentFilter = "all";
     notesManager.renderNotes();
   });
 
-  document.getElementById("activeFilterBtn").addEventListener("click", () => {
+  activeFilterBtn.addEventListener("click", () => {
     notesManager.currentFilter = "active";
     notesManager.renderNotes();
   });
 
-  document
-    .getElementById("completedFilterBtn")
-    .addEventListener("click", () => {
-      notesManager.currentFilter = "completed";
-      notesManager.renderNotes();
-    });
-}); // End of DOMContentLoaded
+  completedFilterBtn.addEventListener("click", () => {
+    notesManager.currentFilter = "completed";
+    notesManager.renderNotes();
+  });
+});

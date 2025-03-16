@@ -172,6 +172,33 @@
       color: $primary-color-100;
     }
   }
+  .color-selector {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    justify-content: center;
+
+    .color-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      &.selected {
+        border: 3px solid $neutral-color-100;
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
 }
 
 #addNoteBtn {
