@@ -6,6 +6,7 @@ import footerHtml from "../components/common/footer/footer.html";
 import "../components/common/header/header.scss";
 import "../components/common/footer/footer.scss";
 import "../components/common/header/header.js";
+import "../images/icons/d-arrow.png";
 
 document.addEventListener("DOMContentLoaded", () => {
   loadComponent("header", headerHtml);
