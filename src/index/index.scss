@@ -19,7 +19,7 @@
   align-items: center;
   background-color: $primary-color-90;
   border-radius: 1.2rem;
-  gap: 2rem;
+  gap: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 
@@ -29,6 +29,11 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+
+    p {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
   }
 
   .card-foot {
@@ -41,7 +46,8 @@
 
 .title {
   p {
-    font-size: 2rem;
+    font-size: 3rem;
+    line-height: 3.4rem;
     font-weight: 700;
   }
 
@@ -75,7 +81,8 @@
     }
 
     p {
-      font-size: 4rem;
+      font-size: 4.5rem;
+      line-height: 100%;
     }
   }
 
@@ -85,13 +92,19 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 3rem 0;
-    padding-left: 1rem;
+    justify-content: space-around;
     margin-right: -1rem;
   }
 
   .card {
     min-width: 320px;
 
+    .card-head {
+      p {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+    }
     .card-body {
       height: 14rem;
       width: 100%;
@@ -100,7 +113,23 @@
 }
 
 @media (min-width: $desktop) {
+  .main-container {
+    padding: 2.5rem 3rem;
+
+    .card-head {
+      p {
+        font-size: 2.5rem;
+        font-weight: 600;
+      }
+    }
+  }
   .cards-container {
     padding-left: 0;
+  }
+
+  .title {
+    p {
+      font-size: 8rem;
+    }
   }
 }
