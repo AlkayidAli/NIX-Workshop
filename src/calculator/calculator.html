@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Flex:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -12,7 +16,7 @@
   <body>
     <div id="header"></div>
     <main class="main-container" data-testid="main">
-      <h1>Calculator</h1>
+      <p id="title-text">Calculator</p>
       <div class="calculator-history-container">
         <div class="calculator-container" id="calculator">
           <input type="text" id="calculationInput" readonly />
@@ -41,7 +45,7 @@
 
         <div class="history-container">
           <a class="menu-item" id="history-toggle"
-            >History<img
+            >HISTORY<img
               src="../images/icons/d-arrow.png"
               alt="arrow"
               class="toggle-arrow"

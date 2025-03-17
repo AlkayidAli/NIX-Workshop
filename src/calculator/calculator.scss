@@ -7,6 +7,12 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
+
+  #title-text {
+    align-self: start;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
 }
 .calculator-container {
   display: flex;
@@ -17,7 +23,7 @@
   border-radius: 1rem;
   padding: 2rem 1rem;
   gap: 1rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.75);
   position: relative;
   z-index: 2;
 
@@ -74,10 +80,11 @@
   justify-content: center;
   background-color: $neutral-color-90;
   border-radius: 0 0 1rem 1rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.75);
   margin-top: -1rem;
   position: relative;
   z-index: 1;
+  max-height: 380px;
 
   #history-list {
     display: flex;
@@ -89,11 +96,15 @@
     margin: 0;
     padding: 0 1rem;
     align-self: end;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
   }
 
   &.active #history-list {
     max-height: 300px;
     margin-top: 1rem;
+    padding-bottom: 3rem;
   }
 
   #history-toggle {
@@ -117,11 +128,12 @@
       height: 16px;
       transition: transform 0.3s ease;
       margin-left: 0.5rem;
+      transform: rotate(90deg);
     }
   }
 
   &.active .toggle-arrow {
-    transform: rotate(90deg);
+    transform: rotate(-90deg) !important;
   }
 
   .history-element {
@@ -136,6 +148,9 @@
 }
 
 @media (min-width: $tablet) {
+  #title-text {
+    font-size: 3.5rem;
+  }
   .calculator-history-container {
     display: flex;
     flex-direction: row;
@@ -152,6 +167,7 @@
     overflow: hidden;
     margin-left: -1rem;
     transition: all 0.3s ease-in-out;
+    max-height: none;
 
     #history-toggle {
       width: 9.375rem;
@@ -183,5 +199,14 @@
         padding: 0 1rem 2rem;
       }
     }
+  }
+}
+
+@media (min-width: $desktop) {
+  .main-container {
+    padding: 2rem 3rem;
+  }
+  #title-text {
+    font-size: 4.5rem !important;
   }
 }
