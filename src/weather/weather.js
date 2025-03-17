@@ -197,4 +197,3 @@ function updateForecast(forecastData) {
     forecastContainer.appendChild(dayElement);
   });
 }
-s;
