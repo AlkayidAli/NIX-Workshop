@@ -1,9 +1,9 @@
+const webpack = require("webpack");
+const dotenv = require("dotenv");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// Remove or comment out this line
-// const { getFileLoader } = require("./utils");
 
 const mode = process.env.NODE_ENV || "development";
 const devMode = process.env.NODE_ENV !== "production";
@@ -20,8 +20,8 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     static: {
-      directory: path.join(__dirname, 'dist'),
-    }
+      directory: path.join(__dirname, "dist"),
+    },
   },
   entry: {
     index: "./src/index/index.js",
@@ -39,8 +39,8 @@ module.exports = {
       chunks: "all",
     },
   },
-  plugins: [].concat(
-    pages.map((page) => {
+  plugins: [
+    ...pages.map((page) => {
       return new HtmlWebpackPlugin({
         inject: "body",
         template: `./src/${page}/${page}.html`,
@@ -51,8 +51,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new Dotenv()
-  ),
+    new Dotenv({
+      systemvars: true, // Load all system environment variables as well
+      safe: true, // Load '.env.example' to verify the '.env' variables are all set
+    }),
+  ],
   module: {
     rules: [
       {
@@ -69,11 +72,11 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: 'images/[name][ext]'
-        }
-      }
+          filename: "images/[name][ext]",
+        },
+      },
     ],
   },
 };

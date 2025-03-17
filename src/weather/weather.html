@@ -23,30 +23,27 @@
             id="city-search"
             class="city-search"
             placeholder="Search city"
+            data-testid="search"
           />
         </div>
       </div>
       <div class="weather-container">
         <div class="location-date">
-          <div class="location">
+          <div class="location" id="location">
             <img src="../images/icons/location.png" alt="location icon" />
             <p class="city-name" id="city-name">Budapest, Hungary</p>
           </div>
-          <div class="date">
+          <div class="date" id="weekday">
             <p class="date-text" id="date-text">Tuesday, 15 Nov, 2023</p>
           </div>
         </div>
 
-        <div class="weather-details">
+        <div class="weather-details" id="weatherDetails">
           <div class="main-details">
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              class="weather-status-icon"
-            />
-            <p class="temp" id="temp">+17c</p>
+            <img alt="weather-status-icon" class="weather-status-icon" />
+            <p class="temp" id="temp" data-testid="details-list">+17c</p>
           </div>
-          <div class="additional-details">
+          <div class="additional-details" data-testid="details-list">
             <p>Humidity:<span id="humidity">30 %</span></p>
             <p>Pressure:<span id="pressure">450 dp</span></p>
             <p>Wind:<span id="wind">10 km/h</span></p>
@@ -55,9 +52,9 @@
         </div>
 
         <div class="filters">
-          <div class="day-filter">
-            <a href="#" class="menu-item">7 days</a>
-            <a href="#" class="menu-item">10 days</a>
+          <div class="day-filter" id="daysSwitch">
+            <a href="#" class="menu-item" id="sevenDays">7 days</a>
+            <a href="#" class="menu-item" id="tenDays">10 days</a>
           </div>
           <div class="unit-filter">
             <div class="temp-unit toggle-container">
@@ -82,76 +79,8 @@
             </div>
           </div>
         </div>
-        <div class="weather-forcast" id="weather-forcast">
-          <div class="weather-forcast-day active">
-            <p class="day" id="day">Tue</p>
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              id="weather-status-icon"
-            />
-            <p class="temp" id="temp">17</p>
-          </div>
-
-          <div class="weather-forcast-day">
-            <p class="day" id="day">Tue</p>
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              id="weather-status-icon"
-            />
-            <p class="temp" id="temp">17</p>
-          </div>
-
-          <div class="weather-forcast-day">
-            <p class="day" id="day">Tue</p>
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              id="weather-status-icon"
-            />
-            <p class="temp" id="temp">17</p>
-          </div>
-
-          <div class="weather-forcast-day">
-            <p class="day" id="day">Tue</p>
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              id="weather-status-icon"
-            />
-            <p class="temp" id="temp">17</p>
-          </div>
-
-          <div class="weather-forcast-day">
-            <p class="day" id="day">Tue</p>
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              id="weather-status-icon"
-            />
-            <p class="temp" id="temp">17</p>
-          </div>
-
-          <div class="weather-forcast-day">
-            <p class="day" id="day">Tue</p>
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              id="weather-status-icon"
-            />
-            <p class="temp" id="temp">17</p>
-          </div>
-
-          <div class="weather-forcast-day">
-            <p class="day" id="day">Tue</p>
-            <img
-              src="../images/icons/rain-icon-placeholder.png"
-              alt="weather-status-icon"
-              id="weather-status-icon"
-            />
-            <p class="temp" id="temp">17</p>
-          </div>
+        <div class="weather-forcast" id="weatherForecast">
+          <!-- forcast days will be added here dynmaiclly  -->
         </div>
       </div>
     </main>

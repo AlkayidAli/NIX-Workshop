@@ -242,12 +242,6 @@
 }
 
 @media (min-width: $tablet) {
-  .app-container {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-  }
-
   body .main-container {
     padding: 0 1rem 5rem 1rem !important;
     .weather-header {
@@ -286,8 +280,8 @@
         .main-details {
           gap: 1rem !important;
           img {
-            width: 93px;
-            height: 93px;
+            width: 93px !important;
+            height: 93px !important;
           }
           p {
             font-size: 6rem !important;
@@ -339,6 +333,12 @@
 }
 
 @media (min-width: $desktop) {
+  .app-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
   body {
     .main-container {
       align-items: start;
@@ -353,6 +353,8 @@
       .weather-container {
         .weather-forcast {
           border-radius: 1.5rem;
+          flex-wrap: nowrap;
+          width: 1085px; // Fixed width to accommodate 7 items
         }
       }
     }
