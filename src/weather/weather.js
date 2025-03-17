@@ -8,7 +8,7 @@ import "../components/common/header/header.js";
 import searchIcon from "../images/icons/search.png";
 import locationIcon from "../images/icons/location.png";
 
-// Global variables
+// global variables
 let currentDays = 7;
 let isCelsius = true;
 let isMetric = true;
@@ -35,7 +35,6 @@ const weatherAPI = {
   },
 };
 
-// DOM elements
 const tempUnitToggle = document.getElementById("tempUnitToggle");
 const speedUnitToggle = document.getElementById("speedUnitToggle");
 
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadComponent("footer", footerHtml);
   initializeWeather();
 
-  // Initialize toggle sliders
+  //toggle sliders
   document.querySelectorAll(".toggle-slider").forEach((slider) => {
     slider.innerHTML = `
       <span>${slider.dataset.left}</span>
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   });
 
-  // Unit toggle handlers
+  // Unit toggle
   tempUnitToggle.addEventListener("change", async (e) => {
     isCelsius = !e.target.checked;
     const currentCity = document.getElementById("city-search").value.trim();
@@ -198,3 +197,4 @@ function updateForecast(forecastData) {
     forecastContainer.appendChild(dayElement);
   });
 }
+s;

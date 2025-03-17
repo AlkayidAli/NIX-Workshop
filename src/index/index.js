@@ -5,7 +5,7 @@ import "./index.scss";
 import { loadComponent } from "../utils/loadComponents";
 import headerHtml from "../components/common/header/header.html";
 import footerHtml from "../components/common/footer/footer.html";
-import "../components/common/header/header.js"; // Add this line
+import "../components/common/header/header.js";
 import stickyNotesIcon from "../images/icons/sticky-notes.png";
 import calculatorIcon from "../images/icons/calculator.png";
 import weatherIcon from "../images/icons/weather.png";
