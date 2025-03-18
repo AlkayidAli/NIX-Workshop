@@ -12,7 +12,7 @@ install the npm dependencies
 npm install
 ```
 
-make sure you provide your api key in the .env file. I did not share mine for security reasons.
+make sure you provide your api key in the .env file, in the same format as the .env.example file. I did not share mine for security reasons.
 
 make sure that the address has no process already in use on the same port, if so make sure to kill it.
 
