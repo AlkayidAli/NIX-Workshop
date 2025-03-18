@@ -29,7 +29,17 @@ const weatherAPI = {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Error fetching weather data:", error);
+      // error message to user
+      const errormsg = document.getElementById("errorMessage");
+      const textfield = document.getElementById("search-bar");
+      if (errormsg) {
+        textfield.classList.add("error");
+        errormsg.style.display = "block";
+      }
+      setTimeout(() => {
+        textfield.classList.remove("error");
+        errormsg.style.display = "none";
+      }, 5000);
       throw error;
     }
   },

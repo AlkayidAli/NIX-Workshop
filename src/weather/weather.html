@@ -15,20 +15,25 @@
     <main class="main-container">
       <div class="weather-header">
         <p class="weather-title">Weather</p>
-        <div class="search-bar">
-          <img
-            src="../images/icons/search.png"
-            alt="search icon"
-            class="search-icon"
-          />
-          <input
-            type="text"
-            name="city-search"
-            id="city-search"
-            class="city-search"
-            placeholder="Search city"
-            data-testid="search"
-          />
+        <div class="search-bar-container">
+          <div class="search-bar" id="search-bar">
+            <img
+              src="../images/icons/search.png"
+              alt="search icon"
+              class="search-icon"
+            />
+            <input
+              type="text"
+              name="city-search"
+              id="city-search"
+              class="city-search"
+              placeholder="Search city"
+              data-testid="search"
+            />
+          </div>
+          <p class="error-message" id="errorMessage">
+            Please enter a valid city name.
+          </p>
         </div>
       </div>
       <div class="weather-container">
