@@ -23,3 +23,6 @@ npm start
 ```
 
 This runs a develop server on your local machine, and should open the default URL allowing you to browse the APP.
+
+#legal
+All visual assets of the project are owned by NIX Hungary inc.
